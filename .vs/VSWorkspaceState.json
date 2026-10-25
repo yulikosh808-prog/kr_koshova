@@ -1,0 +1,15 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\client",
+    "\\server",
+    "\\server\\src",
+    "\\server\\src\\main",
+    "\\server\\src\\main\\java",
+    "\\server\\src\\main\\java\\kosh",
+    "\\server\\src\\main\\java\\kosh\\server",
+    "\\server\\src\\main\\java\\kosh\\server\\db"
+  ],
+  "SelectedNode": "\\server\\src\\main\\java\\kosh\\server\\db\\database_connection.java",
+  "PreviewInSolutionExplorer": false
+}
