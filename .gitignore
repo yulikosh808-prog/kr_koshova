@@ -37,3 +37,17 @@ build/
 
 ### Mac OS ###
 .DS_Store
+
+### IDE та редактори ###
+.idea/
+.vs/
+*.suo
+*.user
+
+### Java / Maven ###
+target/
+
+### Логи та середовище ###
+*.log
+.env
+application-local.properties
