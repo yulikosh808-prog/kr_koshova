@@ -1,24 +1,25 @@
-package org.example;
+package ua.edu.nupp.kpp.server;
 
-public class User {
-    private int id;
+public class users {
+    private Long id;
     private String username;
     private String email;
     private String password;
-    private String role; //слієнт або адмін
+    private String role;
 
-    public User() {}
-    public User(int id, String username, String email, String password, String role) {
+    public users() {
+    }
+    public users(Long id, String username, String email, String password, String role) {
         this.id = id;
         this.username = username;
         this.email = email;
         this.password = password;
         this.role = role;
     }
-    public int getId() {
+    public Long getId() {
         return id;
     }
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
     public String getUsername() {
@@ -46,3 +47,4 @@ public class User {
         this.role = role;
     }
 }
+

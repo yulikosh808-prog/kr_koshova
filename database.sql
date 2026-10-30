@@ -15,7 +15,7 @@ CREATE TABLE sport_objects (
     description TEXT,
     price DOUBLE
 );
-CREATE TABLE time (
+CREATE TABLE "time" (
     id INT AUTO_INCREMENT PRIMARY KEY,
     sport_object_id INT,
     start_time DATETIME,

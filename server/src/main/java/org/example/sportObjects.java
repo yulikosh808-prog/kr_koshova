@@ -1,13 +1,13 @@
 package org.example;
 
-public class Sport_objects {
+public class sportObjects {
     private int id;
     private String name;
     private String description;
     private double price;
 
-    public Sport_objects() {}
-    public Sport_objects(int id, String name, String description, double price) {
+    public sportObjects() {}
+    public sportObjects(int id, String name, String description, double price) {
         this.id = id;
         this.name = name;
         this.description = description;
