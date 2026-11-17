@@ -1,7 +1,7 @@
 package ua.edu.nupp.kpp.server;
 
 import java.sql.SQLException;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -16,7 +16,7 @@ public class bookingService {
     public booking getById(Long id) throws SQLException {
         return dao.getById(id);
     }
-    public void add(Long userId, Long timeId, int countF1, double hoursF2, int extraEqF3, java.time.LocalDateTime date) throws SQLException {
+    public void add(Long userId, Long timeId, int countF1, double hoursF2, int extraEqF3, java.time.LocalDate date) throws SQLException {
         if (hoursF2 < 0.0 || hoursF2 > 100.0 || extraEqF3 < 0 || extraEqF3 > 100.0) {
             throw new IllegalArgumentException("F3 i F3 мають бути в діапазоні від 0 до 100");
         }
@@ -26,7 +26,7 @@ public class bookingService {
         dao.add(b);
         LOG.info("Створено бронювання");
     }
-    public void update(Long id, Long userId, Long timeId, int countF1, double hoursF2, int extraEqF3, java.time.LocalDateTime date) throws SQLException {
+    public void update(Long id, Long userId, Long timeId, int countF1, double hoursF2, int extraEqF3, java.time.LocalDate date) throws SQLException {
         booking current = dao.getById(id);
         if (current == null) {
             throw new IllegalArgumentException("Бронювання не знайдено");
@@ -58,12 +58,12 @@ public class bookingService {
         dao.delete(id);
         LOG.info("Видалено бронювання");
     }
-    private booking fromBookingData(Long id, Long userId, Long timeId, int countF1,double hoursF2, double extraEqF3, bookingStatus status, java.time.LocalDateTime date) {
+    private booking fromBookingData(Long id, Long userId, Long timeId, int countF1,double hoursF2, double extraEqF3, bookingStatus status, java.time.LocalDate date) {
         double f1 = RiskCalculator.factor1(countF1, (int)50.0);
         double f2 = Math.max(0.0, Math.min(100.0, hoursF2));
-        double f3 = Math.max(0.0, Math.min(100.0, (double) extraEqF3 * 20.0));
+        double f3 = Math.max(0.0, Math.min(100.0, extraEqF3 * 20.0));
         double index = RiskCalculator.calculate(f1, f2, f3);
-        return  new booking(id, userId, timeId, status, countF1, f2, (int)f3, index, date);
+        return  new booking(id, userId, timeId, status, countF1, f2, (int) extraEqF3, index, date);
     }
     private void requireUser(Long userId) throws SQLException {
         if (usersDAO.getById(userId) == null) {

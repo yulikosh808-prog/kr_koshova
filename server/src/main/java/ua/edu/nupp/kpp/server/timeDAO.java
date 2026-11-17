@@ -12,7 +12,7 @@ import java.util.function.Predicate;
 
 public class timeDAO {
     public void add(time t) throws SQLException {
-        String sql = "INSERT INTO `time` (sportObjectId, startTime, endTime, statusAvailable) VALUES(?,?,?,?)";
+        String sql = "INSERT INTO `time` (sport_object_id, start_time, end_time, status_available) VALUES(?,?,?,?)";
         try (Connection c = DBUtil.getConnection();
          PreparedStatement p = c.prepareStatement(sql)) {
         bind(p, t);
@@ -42,7 +42,7 @@ public class timeDAO {
         }
     }
     public void update(time t) throws SQLException {
-        String sql = "UPDATE `time` SET sportObjectId=?, startTime=?, endTime=?, statusAvailable=? WHERE id=?";
+        String sql = "UPDATE `time` SET sport_object_id=?, start_time=?, end_time=?, status_available=? WHERE id=?";
         try (Connection c = DBUtil.getConnection();
         PreparedStatement p = c.prepareStatement(sql)) {
             bind(p, t);
@@ -65,16 +65,16 @@ public class timeDAO {
         p.setBoolean(4, t.isStatusAvailable());
     }
     private time map(ResultSet r) throws SQLException {
-        Timestamp startTimestamp = r.getTimestamp("startTime");
+        Timestamp startTimestamp = r.getTimestamp("start_time");
         LocalDateTime startLocalTime = (startTimestamp != null) ? startTimestamp.toLocalDateTime() : null;
-        Timestamp endTimestamp = r.getTimestamp("endTime");
+        Timestamp endTimestamp = r.getTimestamp("end_time");
         LocalDateTime endLocalTime = (endTimestamp != null) ? endTimestamp.toLocalDateTime() : null;
         return new time(
                 r.getLong("id"),
-                r.getLong("sportObjectId"),
+                r.getLong("sport_object_id"),
                 startLocalTime,
                 endLocalTime,
-                r.getBoolean("statusAvailable")
+                r.getBoolean("status_available")
         );
     }
 }

@@ -7,7 +7,7 @@ public class users {
     private String password;
     private String role;
 
-    public users() {
+    public users(Long userId, String username, String email, String password) {
     }
     public users(Long id, String username, String email, String password, String role) {
         this.id = id;

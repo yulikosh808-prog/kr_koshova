@@ -7,6 +7,15 @@ public class DBUtil {
     private static final String URL = "jdbc:mysql://localhost:3306/sport_info";
     private static final String USER = "root";
     private static final String PASSWORD = "root";
+
+    static {
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+        } catch (ClassNotFoundException e) {
+            System.out.println("Не вдалося знайти драйвер MySQL: " + e.getMessage());
+        }
+    }
+
     private DBUtil() {
     }
 

@@ -1,14 +1,14 @@
 package ua.edu.nupp.kpp.server;
 
 import java.sql.*;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.zip.CheckedOutputStream;
 
 public class bookingDAO {
     public void add(booking b) throws SQLException {
-        String sql = "INSERT INTO `booking` (userId, timeId, status, countF1, hoursF2, extraEqF3, `index`, date) VALUES(?,?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO `booking` (user_id, time_id, status, count_f1, hours_f2, extra_eq_f3, `index`, date) VALUES(?,?,?,?,?,?,?,?)";
         try (Connection c = DBUtil.getConnection();
              PreparedStatement p = c.prepareStatement(sql)) {
             bind(p, b);
@@ -38,7 +38,7 @@ public class bookingDAO {
         }
     }
     public void update(booking b) throws SQLException {
-        String sql = "UPDATE booking SET userId=?, timeId=?, status=?, countF1=?, hoursF2=?, extraEqF3=?, `index`=?, date=? WHERE id=?";
+        String sql = "UPDATE booking SET user_id=?, time_id=?, status=?, count_f1=?, hours_f2=?, extra_eq_f3=?, `index`=?, date=? WHERE id=?";
         try (Connection c = DBUtil.getConnection();
         PreparedStatement p = c.prepareStatement(sql)) {
             bind(p, b);
@@ -71,21 +71,21 @@ public class bookingDAO {
         p.setDouble(5, b.getHoursF2());
         p.setInt(6, b.getExtraEqF3());
         p.setDouble(7, b.getIndex());
-        p.setTimestamp(8, b.getDate() != null ? Timestamp.valueOf(b.getDate()) : null);
+        p.setDate(8, b.getDate() != null ? Date.valueOf(b.getDate()) : null);
     }
     private booking map(ResultSet r) throws SQLException {
-        Timestamp timestamp = r.getTimestamp("date");
-        LocalDateTime localDateTime = (timestamp != null) ? timestamp.toLocalDateTime() : null;
+        Date sqlDate = r.getDate("date");
+        LocalDate localDate = (sqlDate != null) ? sqlDate.toLocalDate() : null;
         return new booking(
                 r.getLong("id"),
-                r.getLong("userId"),
-                r.getLong("timeId"),
+                r.getLong("user_id"),
+                r.getLong("time_id"),
                 bookingStatus.valueOf(r.getString("status")),
-                r.getInt("countF1"),
-                r.getDouble("hoursF2"),
-                r.getInt("extraEqF3"),
+                r.getInt("count_f1"),
+                r.getDouble("hours_f2"),
+                r.getInt("extra_eq_f3"),
                 r.getDouble("index"),
-                localDateTime
+                localDate
         );
     }
 }

@@ -1,6 +1,6 @@
 package ua.edu.nupp.kpp.server;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 public class booking {
     private Long id;
@@ -11,11 +11,11 @@ public class booking {
     private double hoursF2;
     private int extraEqF3;
     private double index;
-    private LocalDateTime date;
+    private LocalDate date;
 
     public booking() {
     }
-    public booking(Long id, long userId, long timeId, bookingStatus status, int countF1, double hoursF2, int extraEqF3, double index, LocalDateTime date) {
+    public booking(Long id, long userId, long timeId, bookingStatus status, int countF1, double hoursF2, int extraEqF3, double index, LocalDate date) {
         this.id = id;
         this.userId = userId;
         this.timeId = timeId;
@@ -74,10 +74,10 @@ public class booking {
     public void setIndex(double index) {
         this.index = index;
     }
-    public LocalDateTime getDate() {
+    public LocalDate getDate() {
         return date;
     }
-    public void setDate(LocalDateTime date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 }

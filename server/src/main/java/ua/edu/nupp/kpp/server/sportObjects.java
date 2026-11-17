@@ -6,7 +6,7 @@ public class sportObjects {
     private String description;
     private double price;
 
-    public sportObjects() {
+    public sportObjects(Long aLong, String name, double price) {
     }
     public sportObjects(Long id, String name, String description, double price) {
         this.id = id;
